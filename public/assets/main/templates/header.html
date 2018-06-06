@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg main-top-nav" ng-controller="headerController as header">
+  <div class="container"> 
+    <a class="navbar-brand color-white text-weight-700" href="/">
+      <img ng-if="header.isLogo" ng-src="../img/pacmovies-white.png" style="width: 60px;display: inline-block;">
+      <i ng-if="!header.isLogo" class="fa fa-home font-30"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li ng-repeat="list in header.nav_items_arr" class="nav-item" ng-class="{'active': header.current == list}">
+          <a class="nav-link" href="javascript:void(0)" ui-sref="{{list}}" ng-bind="list"></a>
+        </li>
+        <li ng-if="!header.isSessionActive && isLoginBtn" class="nav-item">
+          <button class="btn btn-login" ui-sref="auth">Login</button>
+        </li>
+        <li ng-if="header.isSessionActive && isLogoutBtn" class="nav-item">
+          <button class="btn btn-login" ng-click="header.logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

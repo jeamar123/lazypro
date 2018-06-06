@@ -1,0 +1,69 @@
+<div class="main-content" preview-directive>
+	<!-- <div class="container"> -->
+		<section id="content-one" class="banner-container" style="background-image: url('../img/{{content_data.banner.image}}');background-size:cover;background-repeat: no-repeat;">
+			<div class="row">
+				<div class="col-12">
+					<div class="banner-content">
+						<div class="banner-content-text">
+							<p ng-bind="content_data.banner.text"></p>
+							<p class="sub-text" ng-bind="content_data.banner.sub_text"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>		
+
+		<section id="content-two" class="lazy-box">
+			<div class="row">
+				<div class="col-{{12 / content_data.section_two.columns.length}}" ng-repeat="list in content_data.section_two.columns">
+					<div class="img-wrapper">
+						<img ng-src="{{list.image}}" class="width-70p">
+					</div>
+					<p ng-bind="list.text"></p>
+				</div>
+			</div>
+		</section>
+
+		<section id="content-three" class="lazy-box" style="background-image: url('../img/{{content_data.section_three.image}}');background-size:cover;background-repeat: no-repeat;">
+			<div class="row">
+				<div class="col-12">
+
+				</div>
+			</div>
+		</section>	
+
+		<section id="content-four" class="lazy-box">
+			<div class="row">
+				<div class="col-{{12 / content_data.section_four.columns.length}} " ng-repeat="list in content_data.section_four.columns">
+					<div class="height-100p display-table">
+						<div ng-if="list.image != null" class="img-wrapper display-table-cell vertical-align-middle">
+							<img ng-src="{{list.image}}" class="width-70p">
+						</div>
+						<p class="display-table-cell vertical-align-middle" ng-if="list.text != null" ng-bind="list.text"></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="content-five" class="lazy-box" style="background-image: url('../img/{{content_data.section_five.image}}');background-size:cover;background-repeat: no-repeat;">
+			<div class="row">
+				<div class="col-12">
+
+				</div>
+			</div>
+		</section>
+
+		<section id="content-six" class="lazy-box">
+			<div class="row">
+				<div class="col-{{12 / content_data.section_six.columns.length}} " ng-repeat="list in content_data.section_six.columns">
+					<div class="height-100p display-table">
+						<div ng-if="list.image != null" class="img-wrapper display-table-cell vertical-align-middle">
+							<img ng-src="{{list.image}}" class="width-70p">
+						</div>
+						<p class="display-table-cell vertical-align-middle" ng-if="list.text != null" ng-bind="list.text"></p>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- </div> -->	
+</div>
