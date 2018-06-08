@@ -4,7 +4,7 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
   var appFactory = {};
 
   appFactory.loginUser = function( data ) {
-  	
+    
     return $http.post(serverUrl.url + 'login', data);
   };
 
@@ -12,39 +12,21 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
     return $http.post(serverUrl.url + 'signup', data);
   };
 
-  appFactory.addMovie = function( data ) {
-    return $http.post(serverUrl.url + 'add_movie', data);
+  appFactory.addPage = function( data ) {
+    return $http.post(serverUrl.url + 'add_page', data);
   };
 
-  appFactory.updateMovie = function( data ) {
-    return $http.post(serverUrl.url + 'update_movie', data);
+  appFactory.updatePage = function( data ) {
+    return $http.post(serverUrl.url + 'update_page', data);
   };
 
-  appFactory.removeMovie = function( id ) {
-    return $http.get(serverUrl.url + 'delete_movie/' + id);
+  appFactory.removePage = function( id ) {
+    return $http.get(serverUrl.url + 'delete_page/' + id);
   };
 
-  appFactory.fetchMovies = function( ) {
-    return $http.get(serverUrl.url + 'get_movies');
+  appFactory.fetchPages = function( ) {
+    return $http.get(serverUrl.url + 'get_pages');
   };
 
-  appFactory.uploadMovie = function( data ) {
-    return Upload.upload({
-        url: serverUrl.url + 'upload_movie',
-        data: data
-    });
-  };
-
-  appFactory.uploadMovieImage = function( data ) {
-    return Upload.upload({
-        url: serverUrl.url + 'replace_movie_image',
-        data: data
-    });
-  };
-
-  appFactory.fetchCategories = function( ) {
-    return $http.get(serverUrl.url + 'get_categories');
-  };
-  
   return appFactory;
 });

@@ -100,8 +100,7 @@
   } 
 /*----------*/
 
-
-/*----- TEXT STYLES / ALIGNMENT -----*/
+/*----- TEXT STYLES / ALIGNMENT / WEIGHT -----*/
   .text-error{
     color: #c9302c;
   }
@@ -234,58 +233,234 @@
 /*----------*/
 
 /*----- CUSTOM WIDTH -----*/
-
-.width-70p{
-  width: 70%;
-}
-
-.width-50p{
-  width: 50%;
-}
-
-.width-30p{
-  width: 30%;
-}
-
-.width-20p{
-  width: 20%;
-}
+  .width-100p{
+    width: 100%;
+  }
+  .width-90p{
+    width: 90%;
+  }
+  .width-800p{
+    width: 800%;
+  }
+  .width-70p{
+    width: 70%;
+  }
+  .width-60p{
+    width: 60%;
+  }
+  .width-50p{
+    width: 50%;
+  }
+  .width-40p{
+    width: 40%;
+  }
+  .width-30p{
+    width: 30%;
+  }
+  .width-20p{
+    width: 20%;
+  }
+  .width-10p{
+    width: 10%;
+  }
+/*----------*/
 
 /*----- CUSTOM HEIGHT -----*/
-
-.height-100p{
-  height: 100%;
-}
-
-.height-70p{
-  height: 70%;
-}
-
-.height-50p{
-  height: 50%;
-}
-
-.height-30p{
-  height: 30%;
-}
-
-.height-20p{
-  height: 20%;
-}
-
+  .height-100p{
+    height: 100%;
+  }
+  .height-90p{
+    height: 90%;
+  }
+  .height-80p{
+    height: 80%;
+  }
+  .height-70p{
+    height: 70%;
+  }
+  .height-60p{
+    height: 60%;
+  }
+  .height-50p{
+    height: 50%;
+  }
+  .height-40p{
+    height: 40%;
+  }
+  .height-30p{
+    height: 30%;
+  }
+  .height-20p{
+    height: 20%;
+  }
+  .height-10p{
+    height: 10%;
+  }
+/*----------*/ 
 
 /*----- DISPLAYS -----*/
+  .display-none {
+    display: none;
+  }
+  .display-block {
+    display: block;
+  }
+  .display-inline-block {
+    display: inline-block;
+  }
+  .display-inline {
+    display: inline;
+  }
+  .display-table {
+    display: table;
+  }
+  .display-table-cell {
+    display: table-cell;
+  }
+/*----------*/
 
-.display-table {
-  display: table;
-}
+/*----- ELEMENT ALIGNMENTS -----*/
+  .vertical-align-top{
+    vertical-align: top;
+  }
+  .vertical-align-middle{
+    vertical-align: middle;
+  }
+  .vertical-align-bottom{
+    vertical-align: bottom;
+  }
+/*----------*/
 
-.display-table-cell {
-  display: table-cell;
-}
+/*----- WHITE SPACES -----*/
+  .white-space-100{
+    height: 100px;
+    width: 100%;
+  }
+  .white-space-90{
+    height: 90px;
+    width: 100%;
+  }
+  .white-space-80{
+    height: 80px;
+    width: 100%;
+  }
+  .white-space-70{
+    height: 70px;
+    width: 100%;
+  }
+  .white-space-60{
+    height: 60px;
+    width: 100%;
+  }
+  .white-space-50{
+    height: 50px;
+    width: 100%;
+  }
+  .white-space-40{
+    height: 40px;
+    width: 100%;
+  }
+  .white-space-30{
+    height: 30px;
+    width: 100%;
+  }
+  .white-space-20{
+    height: 20px;
+    width: 100%;
+  }
+  .white-space-10{
+    height: 10px;
+    width: 100%;
+  }
+  .white-space-5{
+    height: 5px;
+    width: 100%;
+  }
+/*----------*/
 
-/*----- ALIGNMENTS -----*/
+/*----- FLOATS -----*/
+  .float-right{
+    float: right;
+  }
+  .float-left{
+    float: left;
+  }
+  .float-none{
+    float: none !important;
+  }
+/*----------*/
 
-.vertical-align-middle{
-  vertical-align: middle;
-}
+/*----- COLORS AND BACKGROUNDS -----*/
+  .color-black{
+    color: #000 ;
+  }
+  .color-black-111{
+    color: #111;
+  }
+  .color-black-222{
+    color: #222;
+  }
+  .color-black-333{
+    color: #333;
+  }
+  .color-black-444{
+    color: #444;
+  }
+  .color-black-555{
+    color: #555;
+  }
+  .color-gray-666{
+    color: #666;
+  }
+  .color-gray-777{
+    color: #777;
+  }
+  .color-gray-888{
+    color: #888;
+  }
+  .color-gray-999{
+    color: #999;
+  }
+  .color-white{
+    color: #fff;
+  }
+  .color-white-eee{
+    color: #eee;
+  }
+  .color-white-ddd{
+    color: #ddd;
+  }
+  .color-white-ccc{
+    color: #ccc;
+  }
+  .bg-white{
+    background-color: #fff;
+  }
+  .bg-black{
+    background-color: #000;
+  }
+  .bg-gray-999{
+    background-color: #999;
+  }
+/*----------*/
+
+/*----- POSTIONS -----*/
+  .position-relative{
+    position: relative;
+  }
+  .position-absolute{
+    position: absolute;
+  }
+  .position-static{
+    position: static;
+  }
+  .position-fixed{
+    position: fixed;
+  }
+/*----------*/
+
+/*----- CURSORS -----*/
+  .cursor-pointer{
+    cursor: pointer;
+  }
+/*----------*/

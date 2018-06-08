@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','appService','ngFileUpload']);
+var app = angular.module('app', ['ui.router','appService','ngFileUpload','textAngular']);
 
 app.run([ '$rootScope', '$state', '$stateParams', '$templateCache', 
   function ($rootScope, $state, $stateParams, $templateCache) {
@@ -21,6 +21,20 @@ app.factory('serverUrl',[
     }
 ]);
 
+app.filter('tmstmpdate', [
+    '$filter', function($filter) {
+        return function(input, format) {
+          if( input != undefined ){
+            var t = input.split(/[- :]/);
+              input = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+              return $filter('date')(new Date(input), format);
+          }
+        };
+    }
+])
+
+
+
 app.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
@@ -38,19 +52,16 @@ app.config(function($stateProvider, $urlRouterProvider){
         },
       },
     })
-    .state('admin.movie', {
-      url: '/movie',
+    .state('admin.pages', {
+      url: 'pages',
       views: {
-        'header': {
-          templateUrl: '../assets/admin/templates/header.html'
-        },
-        'main': {
-          templateUrl: '../assets/admin/templates/movie.html'
+        'mainContent@admin': {
+          templateUrl: '../assets/admin/templates/pages.html'
         }
       },
     });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('pages');
 });
 
 

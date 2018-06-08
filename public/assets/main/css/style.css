@@ -30,9 +30,10 @@ body,html{
   }
 
   .main-top-nav .navbar-brand{
-    margin: 0 0 0 50px;
+    /*margin: 0 0 0 50px;*/
     font-weight: 700;
     padding: 8px 20px !important;
+    color: #FFF;
   }
 
   .main-top-nav .navbar-brand i{
@@ -139,7 +140,7 @@ body,html{
   footer{
     min-height: 100px;
     width: 100%;
-    background: #333;
+    background: #000;
   }
 
   .footer-container{

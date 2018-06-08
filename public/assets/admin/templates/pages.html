@@ -1,0 +1,107 @@
+<div class="row" pages-directive>  
+  <div class="col-12">
+    <div id="pages-container" class="white-box">
+      <div ng-if="isListShow" class="row pages-list-container">
+        <div class="col-9">
+          <button class="btn" ng-click="selectAllPages()">Select All</button>
+          <button class="btn" ng-click="toggleAdd()">Add</button>
+          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deletePages()">Delete(<span ng-bind="checkedPageArr.length"></span>)</button>
+        </div>
+        <div class="col-3">
+          <div class="search-container text-right" style="height: 30px;">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" style="border: none;background: transparent;"><i class="fa fa-search"></i></span>
+              </div>
+              <input ng-model="pages_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
+            </div>
+          </div>
+          <div class="white-space-20"></div>
+        </div>
+
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th style="width: 50px"></th>
+                <th style="width: 10%;">Name</th>
+                <th style="width: 15%;">Link</th>
+                <th>Description</th>
+                <th class="text-center" style="width: 15%;">Date created</th>
+                <th class="text-center" style="width: 15%;">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="list in pages_list | filter:pages_search">
+                <td class="text-center">
+                  <input type="checkbox" class="form-check-input no-margin" ng-model="pageCheckbox[$index]" ng-click="pageChecked($index, pageCheckbox[$index])">
+                </td>
+                <td ng-bind="list.name">Pagename</td>
+                <td ng-bind="list.link_url">http://localhost:8000/</td>
+                <td ng-bind="list.description">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</td>
+                <td class="text-center" ng-bind="list.created_at | tmstmpdate:'MMM dd, yyyy' ">Jun 06, 2018</td>
+                <td class="text-center">
+                  <button class="btn" ng-click="toggleEdit()">Edit</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div ng-if="isAddShow || isEditShow" class="row add-page-container">
+        <div class="col-9" style="border-right: 1px solid #ddd;">
+          <p ng-if="isAddShow" class="text-weight-700 font-20">Add Page</p>
+          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Page</p>
+          <div class="form-group">
+            <label>Page name</label>
+            <input class="form-control" ng-model="selected_data.name"></input>
+          </div>
+          <div class="form-group">
+            <label>URL</label>
+            <input class="form-control" ng-model="selected_data.link_url"></input>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <text-angular ng-model="selected_data.description" ta-toolbar="textEditorBtns" ta-toolbar-class="text-editor-toolbar"></text-angular>
+          </div>
+        </div>
+
+        <div class="col-3 publish-container">
+          <p class="text-weight-700 font-20">Publish <button ng-if="isEditShow" class="btn btn-preview">Preview</button></p>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select class="form-control" ng-model="selected_data.status">
+              <option>Draft</option>
+              <option>Published</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Visibility</label>
+            <select class="form-control" ng-model="selected_data.visibility">
+              <option>Hidden</option>
+              <option>Visible</option>
+            </select>
+          </div>
+
+          <div class="form-group text-center">
+            <div class="white-space-30"></div>
+            <button class="btn" ng-click="toggleList()">Cancel</button>
+
+            <button ng-if="isAddShow" class="btn" ng-click="submitPage( selected_data )">Submit</button>
+            <button ng-if="isEditShow" class="btn" ng-click="toggleList()">Update</button>
+
+            <div class="white-space-80"></div>
+            <button ng-if="isEditShow" class="btn btn-delete" ng-click="toggleList()">Delete</button>
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
