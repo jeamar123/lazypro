@@ -5,7 +5,7 @@
         <div class="col-9">
           <button class="btn" ng-click="selectAllPages()">Select All</button>
           <button class="btn" ng-click="toggleAdd()">Add</button>
-          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deletePages()">Delete(<span ng-bind="checkedPageArr.length"></span>)</button>
+          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMultiplePAges()">Delete(<span ng-bind="checkedPageArr.length"></span>)</button>
         </div>
         <div class="col-3">
           <div class="search-container text-right" style="height: 30px;">
@@ -41,7 +41,7 @@
                 <td ng-bind="list.description">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</td>
                 <td class="text-center" ng-bind="list.created_at | tmstmpdate:'MMM dd, yyyy' ">Jun 06, 2018</td>
                 <td class="text-center">
-                  <button class="btn" ng-click="toggleEdit()">Edit</button>
+                  <button class="btn" ng-click="toggleEdit( list )">Edit</button>
                 </td>
               </tr>
 
@@ -53,7 +53,7 @@
       <div ng-if="isAddShow || isEditShow" class="row add-page-container">
         <div class="col-9" style="border-right: 1px solid #ddd;">
           <p ng-if="isAddShow" class="text-weight-700 font-20">Add Page</p>
-          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Page</p>
+          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Page <button ng-if="isEditShow" class="btn btn-delete" ng-click="deletePage( selected_data.id )">Delete</button></p>
           <div class="form-group">
             <label>Page name</label>
             <input class="form-control" ng-model="selected_data.name"></input>
@@ -69,12 +69,12 @@
         </div>
 
         <div class="col-3 publish-container">
-          <p class="text-weight-700 font-20">Publish <button ng-if="isEditShow" class="btn btn-preview">Preview</button></p>
+          <p class="text-weight-700 font-20">Publish <button ng-if="isEditShow" class="btn btn-preview" ng-click="viewLinkURL( selected_data.link_url )">Preview</button></p>
 
           <div class="form-group">
             <label>Status</label>
             <select class="form-control" ng-model="selected_data.status">
-              <option>Draft</option>
+              <option>Pending</option>
               <option>Published</option>
             </select>
           </div>
@@ -91,10 +91,10 @@
             <button class="btn" ng-click="toggleList()">Cancel</button>
 
             <button ng-if="isAddShow" class="btn" ng-click="submitPage( selected_data )">Submit</button>
-            <button ng-if="isEditShow" class="btn" ng-click="toggleList()">Update</button>
+            <button ng-if="isEditShow" class="btn" ng-click="updatePage( selected_data )">Update</button>
 
             <div class="white-space-80"></div>
-            <button ng-if="isEditShow" class="btn btn-delete" ng-click="toggleList()">Delete</button>
+            
           </div>
           
         </div>

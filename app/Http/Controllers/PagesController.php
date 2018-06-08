@@ -46,6 +46,9 @@ class PagesController extends Controller
             ]);
 
     if( $create ){
+      // $destinationPath=base_path()."/resources/views/main/about.blade.php";
+      // $success = \File::copy(base_path()."/resources/views/main/index.blade.php",$destinationPath);
+      
       $data['status'] = true;
       $data['message'] = 'Success.';
     } else {

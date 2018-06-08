@@ -8,22 +8,21 @@ app.controller('headerController', function( $state, $scope , $rootScope, $state
 	vm.isSessionActive = false;
   vm.user_data = {};
   vm.current = $state.current.name;
-  vm.nav_items_arr = ['home','about','contact us'];
+  vm.nav_items_arr = [];
 	
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     // console.log(fromState);
     vm.current = toState.name;
   });
 
-  vm.getSession = ( ) =>{
-  	appModule.checkSession()
-  		.then(function(response) {
-  			// console.log(response);
-  			if( response.data.isActive ){
-          vm.isSessionActive = true;
-          vm.user_data = response.data.user;
-        }
-  		});
+  vm.getHeaderContents = ( ) =>{
+    appModule.fetchHeaderContents()
+      .then(function(response){
+        console.log(response);
+        angular.forEach( response.data.pages, function(value,key){
+          vm.nav_items_arr.push(value);
+        });
+      });
   }
 
   vm.logout = ( ) =>{
@@ -36,7 +35,7 @@ app.controller('headerController', function( $state, $scope , $rootScope, $state
   }
 
 	vm.onLoad = ( ) => {
-		// vm.getSession();
+		vm.getHeaderContents();
 	}
 
 	vm.onLoad();

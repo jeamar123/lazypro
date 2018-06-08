@@ -22,7 +22,9 @@ app.directive('pagesDirective', [
         scope.pageCheckbox = [];
         scope.pages_list = [];
 
-        scope.selected_data = {};
+        scope.selected_data = {
+          link_url : "http://" + window.location.host
+        };
 
         scope.pages_search = "";
 
@@ -41,10 +43,11 @@ app.directive('pagesDirective', [
           }
         }
 
-        scope.toggleEdit = ( ) =>{
+        scope.toggleEdit = ( data ) =>{
           scope.hideAllBox();
           if( scope.isEditShow == false ){
             scope.isEditShow = true;
+            scope.selected_data = data;
           }else{
             scope.isEditShow = false;
           }
@@ -94,11 +97,35 @@ app.directive('pagesDirective', [
               scope.pageCheckbox[key] = false;
             });
           }
+        }
 
+        scope.deleteMultiplePAges = ( ) =>{
+          angular.forEach( scope.checkedPageArr ,function(value,key){
+            scope.deletePage( value );
+          });
+        }
+
+        scope.viewLinkURL = ( link ) =>{
+          window.open( link, "_blank" )
         }
 
 
+
       // -------- FUNCTIONS -----------
+
+        scope.updatePage = ( data ) =>{
+          appModule.updatePage( data )
+            .then(function(response){
+              console.log(response);
+            });
+        }
+
+        scope.deletePage = ( id ) =>{
+          appModule.removePage( id )
+            .then(function(response){
+              console.log(response);
+            });
+        }
 
         scope.submitPage = ( data ) =>{
           appModule.addPage( data )

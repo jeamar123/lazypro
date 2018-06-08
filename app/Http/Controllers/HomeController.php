@@ -26,6 +26,17 @@ class HomeController extends Controller
         return view('main.index', $data);
     }
 
+    public function getPageView( $page )
+    {
+        $hostName = $_SERVER['HTTP_HOST'];
+        $protocol = $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+        $data['server'] = $protocol.$hostName;
+        $now = new \DateTime();
+        $data['date'] = $now;
+
+        return view('main.' . $page, $data);
+    }
+
     public function getAdminView( )
     {
         $hostName = $_SERVER['HTTP_HOST'];

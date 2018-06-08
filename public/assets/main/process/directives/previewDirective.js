@@ -69,7 +69,6 @@ app.directive('previewDirective', [
             ]
           }
         };
-        scope.isSessionActive = false;
 
         var isLoading = false;
 
@@ -78,8 +77,8 @@ app.directive('previewDirective', [
           // appModule.fetchMovies()
             // .then(function(response){
               // console.log(response);
-            //   scope.movie_list = response.data;
-            //   scope.toggleLoading();
+              // scope.content_data = response.data;
+              // scope.toggleLoading();
             // });
         }
 
@@ -93,29 +92,6 @@ app.directive('previewDirective', [
             $(".body-loader").show();
             isLoading = true;
           }
-        }
-
-        scope.getSession = ( ) =>{
-          appModule.checkSession()
-            .then(function(response) {
-              // console.log(response);
-              if( response.data.isActive){
-                scope.isSessionActive = true;
-                scope.getSessionData();
-              }else{
-                scope.isSessionActive = false;
-              }
-            });
-        }
-
-        scope.getSessionData = ( ) =>{
-          appModule.fetchSession()
-            .then(function(response) {
-              // console.log(response);
-              if( response.data){
-                scope.user_data = response.data.user;
-              }
-            });
         }
 
         scope.onLoad = ( ) =>{

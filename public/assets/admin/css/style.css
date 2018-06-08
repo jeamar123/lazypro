@@ -95,10 +95,6 @@ body,html{
 /*------------------------------------*/
 
 
-
-
-
-
 /*-------------- ADMIN -------------*/
 
   .admin-container{
@@ -200,6 +196,10 @@ body,html{
     color: #fff;
     background-color: #bd2130;
     border-color: #b21f2d;
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    width: 80px;
   }
 
   /* EDIT */
