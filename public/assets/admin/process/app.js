@@ -59,6 +59,30 @@ app.config(function($stateProvider, $urlRouterProvider){
           templateUrl: '../assets/admin/templates/pages.html'
         }
       },
+    })
+    .state('admin.banners', {
+      url: 'banners',
+      views: {
+        'mainContent@admin': {
+          templateUrl: '../assets/admin/templates/banners.html'
+        }
+      },
+    })
+    .state('admin.sections', {
+      url: 'sections',
+      views: {
+        'mainContent@admin': {
+          templateUrl: '../assets/admin/templates/sections.html'
+        }
+      },
+    })
+    .state('admin.images', {
+      url: 'images',
+      views: {
+        'mainContent@admin': {
+          templateUrl: '../assets/admin/templates/images.html'
+        }
+      },
     });
 
     $urlRouterProvider.otherwise('pages');

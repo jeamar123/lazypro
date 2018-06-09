@@ -62,6 +62,7 @@
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/leftMenuDirective.js"></script>
   <!-- <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/adminDirective.js"></script> -->
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/pagesDirective.js"></script>
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/bannersDirective.js"></script>
 
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/services/services.js"></script>

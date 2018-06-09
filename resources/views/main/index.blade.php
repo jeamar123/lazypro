@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Lazypro - Create your own website lazily</title>
+    <title><?php echo $page->description; ?></title>
     <!-- <link rel="shortcut icon" href="{{ asset('img/video-player-sign.png') }}" type="image/ico"> -->
 
     <link rel="stylesheet" type="text/css" href="../css/fonts.css">
@@ -19,6 +19,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="../css/loader.css"> -->
   </head>
   <body ng-controller="mainController">
+
     <div class="main-body-container">
       <div ui-view="header"></div>
 

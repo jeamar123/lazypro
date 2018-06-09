@@ -2,45 +2,9 @@
   <div class="row">
     <div class="col-12">
       <ul class="nav flex-column">
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 0}" ng-click="changeAdminMenuOpt(0)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.pages">
-            Pages 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 1}" ng-click="changeAdminMenuOpt(1)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.contents">
-            Contents 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 2}" ng-click="changeAdminMenuOpt(2)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.images">
-            Images 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 3}" ng-click="changeAdminMenuOpt(3)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.comments">
-            Comments 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 4}" ng-click="changeAdminMenuOpt(4)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.comments">
-            Appearance 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 5}" ng-click="changeAdminMenuOpt(5)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.appearance">
-            Users 
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="nav-item" ng-class="{'active': admin_view_opt == 6}" ng-click="changeAdminMenuOpt(6)">
-          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.settings">
-            Settings
+        <li ng-repeat="list in left_menu_arr" class="nav-item" ng-class="{'active': admin_view_opt == list}" ng-click="changeAdminMenuOpt(list)">
+          <a class="nav-link" href="javascript:void(0)" ui-sref="admin.{{list}}">
+            {{list}} 
             <i class="fa fa-angle-right"></i>
           </a>
         </li>

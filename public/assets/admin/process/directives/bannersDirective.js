@@ -1,4 +1,4 @@
-app.directive('pagesDirective', [
+app.directive('bannersDirective', [
   '$http',
   '$state',
   '$stateParams',
@@ -10,23 +10,23 @@ app.directive('pagesDirective', [
       scope: true,
       link: function link( scope, element, attributeSet )
       {
-        console.log( "pagesDirective Runinng !" );
+        console.log( "bannersDirective Runinng !" );
 
         scope.isListShow = true;
         scope.isAddShow = false;
         scope.isEditShow = false;
         scope.isAnyBoxChecked = false;
-        scope.isAllPagesBtnChecked = false;
+        scope.isAllBannersBtnChecked = false;
 
-        scope.checkedPageArr = [];
-        scope.pageCheckbox = [];
-        scope.pages_list = [];
+        scope.checkedContentArr = [];
+        scope.contentCheckbox = [];
+        scope.banners_list = [];
 
         scope.selected_data = {
           link_url : "http://" + window.location.host
         };
 
-        scope.pages_search = "";
+        scope.banners_search = "";
 
         scope.hideAllBox = ( ) =>{
           scope.isListShow = false;
@@ -62,44 +62,43 @@ app.directive('pagesDirective', [
           }
         }
 
-        scope.pageChecked = ( index, pageOpt ) =>{
-          scope.pageCheckbox[index] = pageOpt;
-          if( pageOpt == true){
-            scope.checkedPageArr.push( scope.pages_list[index].id );
+        scope.bannerChecked = ( index, bannerOpt ) =>{
+          scope.bannerCheckbox[index] = bannerOpt;
+          if( bannerOpt == true){
+            scope.checkedBannerArr.push( scope.banners_list[index].id );
           }else{
-            scope.checkedPageArr.splice( $.inArray( scope.pages_list[index], scope.checkedPageArr) , 1 );
+            scope.checkedBannerArr.splice( $.inArray( scope.banners_list[index], scope.checkedBannerArr) , 1 );
           }
 
-          var checkedIndex = $.inArray( true, scope.pageCheckbox);
+          var checkedIndex = $.inArray( true, scope.bannerCheckbox);
           if( checkedIndex < 0 ){
             scope.isAnyBoxChecked = false;
           }else{
             scope.isAnyBoxChecked = true;
           }
-
         }
 
-        scope.selectAllPages = ( ) =>{
-          scope.checkedPageArr = [];
-          if( scope.isAllPagesBtnChecked == false ){
-            scope.isAllPagesBtnChecked = true;
+        scope.selectAllBanners = ( ) =>{
+          scope.checkedBannerArr = [];
+          if( scope.isAllBannersBtnChecked == false ){
+            scope.isAllBannersBtnChecked = true;
             scope.isAnyBoxChecked = true;
-            angular.forEach( scope.pages_list, function(value,key){
-              scope.checkedPageArr.push( value.id );
-              scope.pageCheckbox[key] = true;
+            angular.forEach( scope.banners_list, function(value,key){
+              scope.checkedBannerArr.push( value.id );
+              scope.bannerCheckbox[key] = true;
             });
           }else{
-            scope.isAllPagesBtnChecked = false;
+            scope.isAllBannersBtnChecked = false;
             scope.isAnyBoxChecked = false;
-            angular.forEach( scope.pages_list, function(value,key){
-              scope.pageCheckbox[key] = false;
+            angular.forEach( scope.banners_list, function(value,key){
+              scope.bannerCheckbox[key] = false;
             });
           }
         }
 
         scope.deleteMultiplePages = ( ) =>{
-          angular.forEach( scope.checkedPageArr ,function(value,key){
-            scope.deletePage( value );
+          angular.forEach( scope.checkedBannerArr ,function(value,key){
+            scope.deleteBanner( value );
           });
         }
 
@@ -111,37 +110,39 @@ app.directive('pagesDirective', [
 
       // -------- FUNCTIONS -----------
 
-        scope.editPage = ( data ) =>{
-          appModule.updatePage( data )
+        scope.editBanner = ( data ) =>{
+          appModule.updateBanner( data )
             .then(function(response){
               console.log(response);
             });
         }
 
-        scope.deletePage = ( id ) =>{
-          appModule.removePage( id )
+        scope.deleteBanner = ( id ) =>{
+          appModule.removeBanner( id )
             .then(function(response){
               console.log(response);
             });
         }
 
-        scope.submitPage = ( data ) =>{
-          appModule.addPage( data )
+        scope.submitBanner = ( data ) =>{
+        	data.file = data.img;
+        	console.log(data);
+          appModule.addBanner( data )
             .then(function(response){
               console.log(response);
             });
         }
 
-        scope.getAllPages = ( ) =>{
-          appModule.fetchPages()
+        scope.getAllBanners = ( ) =>{
+          appModule.fetchBanners()
             .then(function(response){
               console.log(response);
-              scope.pages_list = response.data;
+              scope.banners_list = response.data;
             });
         }
 
         scope.onLoad = ( ) =>{
-          scope.getAllPages();
+          scope.getAllBanners();
         }
 
         scope.onLoad();

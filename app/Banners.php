@@ -4,13 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pages extends Model
+class Banners extends Model
 {
-  protected $table = 'pages';
+  protected $table = 'banners';
 	protected $fillable = [
 		'name', 
-		'link_url', 
-		'description', 
+		'parent_page', 
+		'header_text', 
+		'sub_text', 
+		'img', 
 		'visibility', 
   ];
 }

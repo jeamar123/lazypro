@@ -12,6 +12,8 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
     return $http.post(serverUrl.url + 'signup', data);
   };
 
+  // PAGES
+
   appFactory.addPage = function( data ) {
     return $http.post(serverUrl.url + 'add_page', data);
   };
@@ -26,6 +28,29 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
 
   appFactory.fetchPages = function( ) {
     return $http.get(serverUrl.url + 'get_pages');
+  };
+
+  //  BANNERS
+
+  appFactory.addBanner = function( data ) {
+    // return $http.post(serverUrl.url + 'add_banner', data);
+
+    return Upload.upload( {
+      url: serverUrl.url + 'add_banner',
+      data: data
+    });
+  };
+
+  appFactory.updateBanner = function( data ) {
+    return $http.post(serverUrl.url + 'update_banner', data);
+  };
+
+  appFactory.removeBanner = function( id ) {
+    return $http.get(serverUrl.url + 'delete_banner/' + id);
+  };
+
+  appFactory.fetchBanners = function( ) {
+    return $http.get(serverUrl.url + 'get_banners');
   };
 
   return appFactory;

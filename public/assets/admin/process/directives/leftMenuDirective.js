@@ -12,11 +12,21 @@ app.directive('leftMenuDirective', [
       {
         console.log( "leftMenuDirective Runinng !" );
 
-        scope.admin_view_opt = 0;
+        scope.left_menu_arr = [
+          'pages',
+          'banners',
+          'sections',
+          'images',
+          'comments',
+          'appearance',
+          'users',
+          'settings',
+        ];
+
+        scope.admin_view_opt = $state.current.url;
 
         scope.changeAdminMenuOpt = ( opt ) =>{
           scope.admin_view_opt = opt;
-          console.log('sdfds');
         }
 
         scope.onLoad = ( ) =>{

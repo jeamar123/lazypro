@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pages extends Model
+class Sections extends Model
 {
-  protected $table = 'pages';
+  protected $table = 'sections';
 	protected $fillable = [
 		'name', 
-		'link_url', 
-		'description', 
+		'parent_page', 
+		'columns', 
+		'contents', 
 		'visibility', 
   ];
 }

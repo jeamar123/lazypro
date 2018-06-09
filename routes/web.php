@@ -25,18 +25,27 @@ Route::get('/check_session', 'AuthController@checkSessionStatus');
 Route::get('/get_session', 'AuthController@get_session');
 Route::get('/logout', 'AuthController@logout');
 
+// ----------------- ADMIN ---------------------- //
 
 Route::get('/admin', 'HomeController@getAdminView');
+
 Route::get('/get_pages', 'PagesController@getAllPages');
 Route::get('/get_pages/{id}', 'PagesController@getPageByID');
 Route::post('/add_page', 'PagesController@addPage');
 Route::post('/update_page', 'PagesController@updatePage');
 Route::get('/delete_page/{id}', 'PagesController@deletePage');
 
-Route::get('/get_header_contents', 'PreviewController@getHeaderContent');
-Route::get('/get_body_contents', 'PreviewController@getBodyContent');
+Route::get('/get_banners', 'BannersController@getAllBanners');
+Route::get('/get_banners/{id}', 'BannersController@getBannerByID');
+Route::post('/add_banner', 'BannersController@addBanner');
+Route::post('/update_banner', 'BannersController@updateBanner');
+Route::get('/delete_banner/{id}', 'BannersController@deleteBanner');
 
+// ----------------- PREVIEW ---------------------- //
 
 Route::get('/', 'HomeController@getHomeView');
 Route::get('/{page}', 'HomeController@getPageView');
+
+Route::get('/get_header_contents', 'PreviewController@getHeaderContent');
+Route::get('/get_body_contents', 'PreviewController@getBodyContent');
 

@@ -1,11 +1,11 @@
-<div class="row" pages-directive>  
+<div class="row" banners-directive>  
   <div class="col-12">
-    <div id="pages-container" class="white-box">
-      <div ng-if="isListShow" class="row pages-list-container">
+    <div id="banners-container" class="white-box">
+      <div ng-if="isListShow" class="row banners-list-container">
         <div class="col-9">
-          <button class="btn" ng-click="selectAllPages()">Select All</button>
+          <button class="btn" ng-click="selectAllBanners()">Select All</button>
           <button class="btn" ng-click="toggleAdd()">Add</button>
-          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMultiplePages()">Delete(<span ng-bind="checkedPageArr.length"></span>)</button>
+          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMultipleBanners()">Delete(<span ng-bind="checkedBannerArr.length"></span>)</button>
         </div>
         <div class="col-3">
           <div class="search-container text-right" style="height: 30px;">
@@ -13,7 +13,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" style="border: none;background: transparent;"><i class="fa fa-search"></i></span>
               </div>
-              <input ng-model="pages_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
+              <input ng-model="banners_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
             </div>
           </div>
           <div class="white-space-20"></div>
@@ -25,20 +25,20 @@
               <tr>
                 <th style="width: 50px"></th>
                 <th style="width: 25%;">Name</th>
-                <th style="width: 25%;">Link</th>
+                <th style="width: 25%;">Parent Page</th>
                 <th>Status</th>
                 <th class="text-center" style="width: 15%;">Date created</th>
                 <th class="text-center" style="width: 15%;">Options</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="list in pages_list | filter:pages_search">
+              <tr ng-repeat="list in banners_list | filter:banners_search">
                 <td class="text-center">
-                  <input type="checkbox" class="form-check-input no-margin" ng-model="pageCheckbox[$index]" ng-click="pageChecked($index, pageCheckbox[$index])">
+                  <input type="checkbox" class="form-check-input no-margin" ng-model="vannerCheckbox[$index]" ng-click="vannerChecked($index, vannerCheckbox[$index])">
                 </td>
                 <td ng-bind="list.name">Pagename</td>
-                <td ng-bind="list.link_url">http://localhost:8000/</td>
-                <td ng-bind="list.status"></td>
+                <td ng-bind="list.parent_page"></td>
+                <td ng-bind="list.visibility"></td>
                 <td class="text-center" ng-bind="list.created_at | tmstmpdate:'MMM dd, yyyy' ">Jun 06, 2018</td>
                 <td class="text-center">
                   <button class="btn" ng-click="toggleEdit( list )">Edit</button>
@@ -50,22 +50,39 @@
         </div>
       </div>
 
-      <div ng-if="isAddShow || isEditShow" class="row add-page-container">
+      <div ng-if="isAddShow || isEditShow" class="row add-banner-container">
         <div class="col-9" style="border-right: 1px solid #ddd;">
-          <p ng-if="isAddShow" class="text-weight-700 font-20">Add Page</p>
-          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Page <button ng-if="isEditShow" class="btn btn-delete" ng-click="deletePage( selected_data.id )">Delete</button></p>
+          <p ng-if="isAddShow" class="text-weight-700 font-20">Add Banner</p>
+          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Banner <button ng-if="isEditShow" class="btn btn-delete" ng-click="deleteBanner( selected_data.id )">Delete</button></p>
           <div class="form-group">
-            <label>Page name</label>
+            <label>Banner name</label>
             <input class="form-control" ng-model="selected_data.name"></input>
           </div>
           <div class="form-group">
-            <label>URL</label>
-            <input class="form-control" ng-model="selected_data.link_url"></input>
+            <label>Parent Page</label>
+            <select class="form-control" ng-model="selected_data.parent_page">
+              <option>Home</option>
+              <option>About us</option>
+            </select>
           </div>
           <div class="form-group">
-            <label>Description</label>
-            <input class="form-control" ng-model="selected_data.description"></input>
+            <label>Header text</label>
+            <input class="form-control" ng-model="selected_data.header_text"></input>
             <!-- <text-angular ng-model="selected_data.description" ta-toolbar="textEditorBtns" ta-toolbar-class="text-editor-toolbar"></text-angular> -->
+          </div>
+          <div class="form-group">
+            <label>Sub text</label>
+            <input class="form-control" ng-model="selected_data.sub_text"></input>
+          </div>
+          <div class="form-group">
+            <label>Background Image</label>
+            <br>
+            <img ng-if="selected_data.img" ngf-thumbnail="selected_data.img || '/thumb.jpg'" style="width: 500px;margin-bottom: 10px;">
+            <br>
+            <!-- <input class="form-control" ng-model="selected_data.img"></input> -->
+            <button class="btn" ngf-select ng-model="selected_data.img" ngf-pattern="'image/*'"
+              ngf-accept="'image/*'">Select</button>
+            
           </div>
         </div>
 
@@ -84,8 +101,8 @@
             <div class="white-space-30"></div>
             <button class="btn" ng-click="toggleList()">Cancel</button>
 
-            <button ng-if="isAddShow" class="btn" ng-click="submitPage( selected_data )">Submit</button>
-            <button ng-if="isEditShow" class="btn" ng-click="editPage( selected_data )">Update</button>
+            <button ng-if="isAddShow" class="btn" ng-click="submitBanner( selected_data )">Submit</button>
+            <button ng-if="isEditShow" class="btn" ng-click="editBanner( selected_data )">Update</button>
 
             <div class="white-space-80"></div>
             

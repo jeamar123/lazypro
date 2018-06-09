@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DateTime;
 
+use App\Pages;
+
 class HomeController extends Controller
 {
     /**
@@ -22,6 +24,8 @@ class HomeController extends Controller
         $data['server'] = $protocol.$hostName;
         $now = new \DateTime();
         $data['date'] = $now;
+        $active_page = Pages::where('link_url', $protocol.$hostName)->get();
+        $data['page'] = $active_page[0];
 
         return view('main.index', $data);
     }
@@ -33,6 +37,7 @@ class HomeController extends Controller
         $data['server'] = $protocol.$hostName;
         $now = new \DateTime();
         $data['date'] = $now;
+        $data['page'] = Pages::where('link_url', $protocol.$hostName)->get();
 
         return view('main.' . $page, $data);
     }

@@ -162,6 +162,11 @@ body,html{
   .pages-list-container table tr th,
   .pages-list-container table tr td{
     vertical-align: middle;
+    font-weight: 700;
+  }
+
+  .pages-list-container table tr td{
+    font-size: 12px;
   }
 
   .pages-list-container table tr th .form-check-input,
@@ -211,6 +216,84 @@ body,html{
     width: 80px;
   }
 
+/*-------------- BANNERS -------------*/
+
+  #banners-container{
+    padding: 60px 20px 20px 20px;
+    min-height: unset;
+    height: 100vh;
+    margin-top: -50px;
+    overflow-y: auto;
+  }
+
+  .banners-list-container{
+    
+  }
+
+  .banners-list-container table{
+    padding-top: 10px;
+  }
+
+  .banners-list-container table thead tr th{
+    border-top: none;
+  }
+
+  .banners-list-container table tr th,
+  .banners-list-container table tr td{
+    vertical-align: middle;
+    font-weight: 700;
+  }
+
+  .banners-list-container table tr td{
+    font-size: 12px;
+  }
+
+  .banners-list-container table tr th .form-check-input,
+  .banners-list-container table tr td .form-check-input{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px;
+  }
+
+  /* ADD */
+  .add-banner-container{
+
+  }
+
+  .add-banner-container label{
+    font-weight: 700;
+  }
+
+  .text-editor-toolbar{
+    margin-bottom: 10px;
+  }
+
+  .text-editor-toolbar button{
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    font-size: 14px;
+  } 
+
+  .add-banner-container .btn-delete{
+    color: #fff;
+    background-color: #bd2130;
+    border-color: #b21f2d;
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    width: 80px;
+  }
+
+  /* EDIT */
+
+  .publish-container .btn-preview{
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    width: 80px;
+  }
 
 
   

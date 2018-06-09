@@ -7,31 +7,43 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DateTime;
 
+use App\Brand_info;
 use App\Pages;
+use App\Images;
 
 class PreviewController extends Controller
 {
-    /**
-     * Show the profile for the given user.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function getHeaderContent( )
-    {
-        $data = array();
+  /**
+   * Show the profile for the given user.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function getHeaderContent( )
+  {
+    $data = array();
 
-        $data['pages'] = Pages::orderBy('created_at', 'desc')->get();
+    $hostName = $_SERVER['HTTP_HOST'];
+    $protocol = $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+    $data['server'] = $protocol.$hostName;
+    $now = new \DateTime();
+    $data['date'] = $now;
 
-        return $data;
-    }
+    $data['brand'] = Brand_info::orderBy('created_at', 'asc')->get();
+    $data['pages'] = Pages::orderBy('created_at', 'asc')->get();
 
-    public function getBodyContent( )
-    {
-        $data = array();
+    return $data;
+  }
 
-        $data['pages'] = Pages::orderBy('created_at', 'desc')->get();
+  public function getBodyContent( )
+  {
+    $data = array();
 
-        return $data;
-    }
+    $data['brand'] = Brand_info::orderBy('created_at', 'asc')->get();
+    $data['pages'] = Pages::orderBy('created_at', 'asc')->get();
+    $data['contents'] = Pages::Contents('created_at', 'asc')->get();
+    $data['images'] = Images::Contents('created_at', 'asc')->get();
+
+    return $data;
+  }
 }

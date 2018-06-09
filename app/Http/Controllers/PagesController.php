@@ -17,7 +17,7 @@ class PagesController extends Controller
    * @return Response
    */
   public function getAllPages(){
-    return Pages::orderBy('created_at', 'desc')->get();
+    return Pages::orderBy('created_at', 'asc')->get();
   }
 
   public function getPageByID($id){
@@ -41,7 +41,6 @@ class PagesController extends Controller
                 'name' => $request->get('name'),
                 'link_url' => $request->get('link_url'),
                 'description' => $request->get('description'),
-                'status' => $request->get('status'),
                 'visibility' => $request->get('visibility'),
             ]);
 
@@ -63,7 +62,6 @@ class PagesController extends Controller
       'name' => $request->get('name'),
       'link_url' => $request->get('link_url'),
       'description' => $request->get('description'),
-      'status' => $request->get('status'),
       'visibility' => $request->get('visibility'),
     );
 
