@@ -41,6 +41,12 @@ Route::post('/add_banner', 'BannersController@addBanner');
 Route::post('/update_banner', 'BannersController@updateBanner');
 Route::get('/delete_banner/{id}', 'BannersController@deleteBanner');
 
+Route::get('/get_sections', 'SectionsController@getAllSections');
+Route::get('/get_sections/{id}', 'SectionsController@getSectionByID');
+Route::post('/add_section', 'SectionsController@addSection');
+Route::post('/update_section', 'SectionsController@updateSection');
+Route::get('/delete_section/{id}', 'SectionsController@deleteSection');
+
 // ----------------- PREVIEW ---------------------- //
 
 Route::get('/', 'HomeController@getHomeView');

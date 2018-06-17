@@ -1,4 +1,4 @@
-app.directive('pagesDirective', [
+app.directive('sectionsDirective', [
   '$http',
   '$state',
   '$stateParams',
@@ -10,31 +10,37 @@ app.directive('pagesDirective', [
       scope: true,
       link: function link( scope, element, attributeSet )
       {
-        console.log( "pagesDirective Runinng !" );
+        console.log( "sectionsDirective Runinng !" );
 
         scope.isListShow = true;
         scope.isAddShow = false;
         scope.isEditShow = false;
         scope.isAnyBoxChecked = false;
-        scope.isAllPagesBtnChecked = false;
+        scope.isAllSectionsBtnChecked = false;
 
-        scope.checkedPageArr = [];
-        scope.pageCheckbox = [];
-        scope.pages_list = [];
-
+        scope.checkedSectionArr = [];
+        scope.sectionCheckbox = [];
+        scope.sections_list = [];
 
         scope.selected_data = {
           link_url : "http://" + window.location.host,
           visibility : 'hidden',
-          banner : ""
+          columns: 1
         };
 
-        scope.pages_search = "";
+        scope.sections_search = "";
 
         scope.hideAllBox = ( ) =>{
           scope.isListShow = false;
           scope.isAddShow = false;
           scope.isEditShow = false;
+
+          scope.selected_data = {
+            link_url : "http://" + window.location.host,
+            visibility : 'hidden',
+          };
+
+          scope.getAllSections();
         }
 
         scope.toggleAdd = ( ) =>{
@@ -65,44 +71,43 @@ app.directive('pagesDirective', [
           }
         }
 
-        scope.pageChecked = ( index, pageOpt ) =>{
-          scope.pageCheckbox[index] = pageOpt;
-          if( pageOpt == true){
-            scope.checkedPageArr.push( scope.pages_list[index].id );
+        scope.sectionChecked = ( index, sectionOpt ) =>{
+          scope.sectionCheckbox[index] = sectionOpt;
+          if( sectionOpt == true){
+            scope.checkedSectionArr.push( scope.sections_list[index].id );
           }else{
-            scope.checkedPageArr.splice( $.inArray( scope.pages_list[index], scope.checkedPageArr) , 1 );
+            scope.checkedSectionArr.splice( $.inArray( scope.sections_list[index], scope.checkedSectionArr) , 1 );
           }
 
-          var checkedIndex = $.inArray( true, scope.pageCheckbox);
+          var checkedIndex = $.inArray( true, scope.sectionCheckbox);
           if( checkedIndex < 0 ){
             scope.isAnyBoxChecked = false;
           }else{
             scope.isAnyBoxChecked = true;
           }
-
         }
 
-        scope.selectAllPages = ( ) =>{
-          scope.checkedPageArr = [];
-          if( scope.isAllPagesBtnChecked == false ){
-            scope.isAllPagesBtnChecked = true;
+        scope.selectAllSections = ( ) =>{
+          scope.checkedSectionArr = [];
+          if( scope.isAllSectionsBtnChecked == false ){
+            scope.isAllSectionsBtnChecked = true;
             scope.isAnyBoxChecked = true;
-            angular.forEach( scope.pages_list, function(value,key){
-              scope.checkedPageArr.push( value.id );
-              scope.pageCheckbox[key] = true;
+            angular.forEach( scope.sections_list, function(value,key){
+              scope.checkedSectionArr.push( value.id );
+              scope.sectionCheckbox[key] = true;
             });
           }else{
-            scope.isAllPagesBtnChecked = false;
+            scope.isAllSectionsBtnChecked = false;
             scope.isAnyBoxChecked = false;
-            angular.forEach( scope.pages_list, function(value,key){
-              scope.pageCheckbox[key] = false;
+            angular.forEach( scope.sections_list, function(value,key){
+              scope.sectionCheckbox[key] = false;
             });
           }
         }
 
         scope.deleteMultiplePages = ( ) =>{
-          angular.forEach( scope.checkedPageArr ,function(value,key){
-            scope.deletePage( value );
+          angular.forEach( scope.checkedSectionArr ,function(value,key){
+            scope.deleteSection( value );
           });
         }
 
@@ -114,63 +119,51 @@ app.directive('pagesDirective', [
 
       // -------- FUNCTIONS -----------
 
-        scope.getAllBanners = ( ) =>{
-          appModule.fetchBanners( )
+        scope.editSection = ( data ) =>{
+          data.file = data.img;
+          appModule.updateSection( data )
             .then(function(response){
               console.log(response);
-              scope.banner_list = response.data;
+              scope.selected_data = response.data.updated_section;
             });
         }
 
-        scope.getBanner = ( id ) =>{
-          if( id != null ){
-            appModule.fetchBannerByID( id )
-              .then(function(response){
-                console.log(response);
-                scope.selected_data.banner = response.data.id;
-                scope.selected_data.banner_data = response.data;
-              });
-          }else{
-            scope.selected_data.banner = "";
-            scope.selected_data.banner_data = null;
-          }
-        }
-
-        scope.editPage = ( data ) =>{
-          appModule.updatePage( data )
+        scope.deleteSection = ( id ) =>{
+          appModule.removeSection( id )
             .then(function(response){
               console.log(response);
             });
         }
 
-        scope.deletePage = ( id ) =>{
-          appModule.removePage( id )
+        scope.submitSection = ( data ) =>{
+          console.log(data);
+        	data.file = data.img;
+          appModule.addSection( data )
             .then(function(response){
               console.log(response);
             });
         }
 
-        scope.submitPage = ( data ) =>{
-          appModule.addPage( data )
+        scope.getAllSections = ( ) =>{
+          appModule.fetchSections()
             .then(function(response){
               console.log(response);
-            });
-        }
-
-        scope.getAllPages = ( ) =>{
-          appModule.fetchPages()
-            .then(function(response){
-              console.log(response);
-              scope.pages_list = response.data;
+              scope.sections_list = response.data;
             });
         }
 
         scope.onLoad = ( ) =>{
-          scope.getAllPages();
-          scope.getAllBanners()
+          scope.selected_data = {
+            link_url : "http://" + window.location.host,
+            visibility : 'hidden',
+          };
+
+          scope.getAllSections();
         }
 
         scope.onLoad();
+
+
 
       }
     }

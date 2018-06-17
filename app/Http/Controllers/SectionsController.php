@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DateTime;
-use App\Banners;
+use App\Sections;
 
-class BannersController extends Controller
+class SectionsController extends Controller
 {
   /**
    * Show the profile for the given user.
@@ -26,24 +26,24 @@ class BannersController extends Controller
     ));
   }
 
-  public function getAllBanners(){
-    return Banners::orderBy('created_at', 'asc')->get();
+  public function getAllSections(){
+    return Sections::orderBy('created_at', 'asc')->get();
   }
 
-  public function getBannerByID($id){
-    $data = Banners::where('id', $id)->get();
+  public function getSectionByID($id){
+    $data = Sections::where('id', $id)->get();
     return $data[0];
   }
 
-  public function addBanner( Request $request ){
+  public function addSection( Request $request ){
     $data = array();
 
-    $count = Banners::where('name', '=', $request->get('name'))->count();
+    $count = Sections::where('name', '=', $request->get('name'))->count();
     $image = "";
 
     if( $count > 0 ) {
       $data['status'] = false;
-      $data['message'] = 'Banner name already exists.';
+      $data['message'] = 'Section name already exists.';
 
       return $data;
     }
@@ -64,7 +64,7 @@ class BannersController extends Controller
       $image = $imgPathName['secure_url'];
     }
 
-    $create = Banners::create([
+    $create = Sections::create([
               'name' => $request->get('name'),
               'parent_page' => ( $request->get('parent_page') == null || $request->get('parent_page') == 'null' ) ? "" : $request->get('parent_page'),
               'header_text' => $request->get('header_text'),
@@ -84,15 +84,15 @@ class BannersController extends Controller
 
   }
 
-  public function updateBanner( Request $request ){
+  public function updateSection( Request $request ){
     $data = array();
 
-    $count = Banners::where('name', '=', $request->get('name'))->where('id', '!=', $request->get('id'))->count();
+    $count = Sections::where('name', '=', $request->get('name'))->where('id', '!=', $request->get('id'))->count();
     $image = "";
 
     if( $count > 0 ) {
       $data['status'] = false;
-      $data['message'] = 'Banner name already exists.';
+      $data['message'] = 'Section name already exists.';
 
       return $data;
     }
@@ -123,13 +123,13 @@ class BannersController extends Controller
       'visibility' => $request->get('visibility'),
     );
 
-    $update_banner  = Banners::where('id', '=', $request->get('id'))->update($save_data);
-    $fetch_banner   = Banners::where('id', '=', $request->get('id'))->get();
+    $update_section  = Sections::where('id', '=', $request->get('id'))->update($save_data);
+    $fetch_section   = Sections::where('id', '=', $request->get('id'))->get();
 
-    if( $update_banner  ){
+    if( $update_section  ){
       $data['status'] = true;
       $data['message'] = 'Success.';
-      $data['updated_banner'] = $fetch_banner[0];
+      $data['updated_section'] = $fetch_section[0];
     } else {
       $data['status'] = false;
       $data['message'] = 'Failed.';
@@ -138,10 +138,10 @@ class BannersController extends Controller
     return $data;
   }
 
-  public function deleteBanner( $id ){
+  public function deleteSection( $id ){
     $data = array();
 
-    if( Banners::where('id', '=', $id)->delete() ) {
+    if( Sections::where('id', '=', $id)->delete() ) {
       $data['status'] = TRUE;
       $data['message'] = 'Success.';
     } else {

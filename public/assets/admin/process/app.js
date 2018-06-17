@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','appService','ngFileUpload','textAngular']);
+var app = angular.module('app', ['ui.router','appService','ngFileUpload']);
 
 app.run([ '$rootScope', '$state', '$stateParams', '$templateCache', 
   function ($rootScope, $state, $stateParams, $templateCache) {

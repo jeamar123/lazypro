@@ -113,13 +113,15 @@ body,html{
     border-right: 1px solid #ddd;
     min-height: unset;
     height: 100vh;
+    background-color: #344861;
   }
 
   .admin-container .admin-left-menu li a{
     padding: 15px 20px;
     font-size: 12px;
     font-weight: 700;
-    color: #444;
+    color: #FFF;
+    /*color: #444;*/
   }
 
   .admin-container .admin-left-menu li a i{
@@ -207,6 +209,49 @@ body,html{
     width: 80px;
   }
 
+  .add-page-container .page-banner-container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .add-page-container .page-banner-container .page-banner-bg-image{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .add-page-container .page-banner-container .page-banner-content{
+    z-index: 5;
+    position: relative;
+    text-align: center;
+  }
+
+  .add-page-container .page-section-container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .add-page-container .page-section-container .page-section-bg-image{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .add-page-container .page-section-container .page-section-content{
+    z-index: 5;
+    position: relative;
+    text-align: center;
+  }
+
   /* EDIT */
 
   .publish-container .btn-preview{
@@ -214,6 +259,25 @@ body,html{
     font-size: 12px;
     padding: 4px;
     width: 80px;
+  }
+
+  .publish-container .form-section-drops .section-drop .btn-remove-drop{
+    display: inline-block;
+    width: 33px;
+    padding: 0 !important;
+    height: 33px;
+    border: 1px solid #ced4da;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .publish-container .form-section-drops .section-drop select,
+  .publish-container .form-section-drops .section-drop select:focus{
+    margin: 5px 0 5px 8px;
+    width: 78%;
+    border-color: #ced4da;
+    box-shadow: none;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
   }
 
 /*-------------- BANNERS -------------*/
@@ -286,6 +350,130 @@ body,html{
     width: 80px;
   }
 
+  .add-banner-container .preview-banner-container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+  }
+
+  .add-banner-container .preview-banner-container .preview-banner-bg-image{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .add-banner-container .preview-banner-container .preview-banner-content{
+    z-index: 5;
+    position: relative;
+    text-align: center;
+  }
+
+  /* EDIT */
+
+  .publish-container .btn-preview{
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    width: 80px;
+  }
+
+
+/*-------------- SECTIONS -------------*/
+
+  #sections-container{
+    padding: 60px 20px 20px 20px;
+    min-height: unset;
+    height: 100vh;
+    margin-top: -50px;
+    overflow-y: auto;
+  }
+
+  .sections-list-container{
+    
+  }
+
+  .sections-list-container table{
+    padding-top: 10px;
+  }
+
+  .sections-list-container table thead tr th{
+    border-top: none;
+  }
+
+  .sections-list-container table tr th,
+  .sections-list-container table tr td{
+    vertical-align: middle;
+    font-weight: 700;
+  }
+
+  .sections-list-container table tr td{
+    font-size: 12px;
+  }
+
+  .sections-list-container table tr th .form-check-input,
+  .sections-list-container table tr td .form-check-input{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px;
+  }
+
+  /* ADD */
+  .add-section-container{
+
+  }
+
+  .add-section-container label{
+    font-weight: 700;
+  }
+
+  .text-editor-toolbar{
+    margin-bottom: 10px;
+  }
+
+  .text-editor-toolbar button{
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    font-size: 14px;
+  } 
+
+  .add-section-container .btn-delete{
+    color: #fff;
+    background-color: #bd2130;
+    border-color: #b21f2d;
+    float: right;
+    font-size: 12px;
+    padding: 4px;
+    width: 80px;
+  }
+
+  .add-section-container .preview-section-container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+  }
+
+  .add-section-container .preview-section-container .preview-section-bg-image{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .add-section-container .preview-section-container .preview-section-content{
+    z-index: 5;
+    position: relative;
+    text-align: center;
+  }
+
   /* EDIT */
 
   .publish-container .btn-preview{
@@ -300,6 +488,11 @@ body,html{
 
 
 /*------------OVERRIDES----------------*/
+  .ta-editor.ta-html, 
+  .ta-scroll-window.form-control,
+  .ta-scroll-window > .ta-bind{
+    min-height: 70px;
+  }
 
   input:focus,
   button:focus {

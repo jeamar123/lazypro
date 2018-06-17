@@ -18,12 +18,13 @@ app.directive('bannersDirective', [
         scope.isAnyBoxChecked = false;
         scope.isAllBannersBtnChecked = false;
 
-        scope.checkedContentArr = [];
-        scope.contentCheckbox = [];
+        scope.checkedBannerArr = [];
+        scope.bannerCheckbox = [];
         scope.banners_list = [];
 
         scope.selected_data = {
-          link_url : "http://" + window.location.host
+          link_url : "http://" + window.location.host,
+          visibility : 'hidden',
         };
 
         scope.banners_search = "";
@@ -32,6 +33,13 @@ app.directive('bannersDirective', [
           scope.isListShow = false;
           scope.isAddShow = false;
           scope.isEditShow = false;
+
+          scope.selected_data = {
+            link_url : "http://" + window.location.host,
+            visibility : 'hidden',
+          };
+
+          scope.getAllBanners();
         }
 
         scope.toggleAdd = ( ) =>{
@@ -111,9 +119,11 @@ app.directive('bannersDirective', [
       // -------- FUNCTIONS -----------
 
         scope.editBanner = ( data ) =>{
+          data.file = data.img;
           appModule.updateBanner( data )
             .then(function(response){
               console.log(response);
+              scope.selected_data = response.data.updated_banner;
             });
         }
 
@@ -126,7 +136,6 @@ app.directive('bannersDirective', [
 
         scope.submitBanner = ( data ) =>{
         	data.file = data.img;
-        	console.log(data);
           appModule.addBanner( data )
             .then(function(response){
               console.log(response);
@@ -142,6 +151,11 @@ app.directive('bannersDirective', [
         }
 
         scope.onLoad = ( ) =>{
+          scope.selected_data = {
+            link_url : "http://" + window.location.host,
+            visibility : 'hidden',
+          };
+
           scope.getAllBanners();
         }
 

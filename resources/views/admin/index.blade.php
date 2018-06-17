@@ -13,10 +13,8 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
-    <link rel='stylesheet' type="text/css" href='../css/textAngular.css'>
     <link rel="stylesheet" type="text/css" href="../assets/admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/lazypro-custom.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../css/custom.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="../css/loader.css"> -->
   </head>
   <body ng-controller="mainController">
@@ -47,22 +45,16 @@
   <script type="text/javascript" src="<?php echo $server; ?>/js/ng-file-upload-shim.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/js/ng-file-upload.min.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/js/sweetalert.min.js"></script>
-  <script type="text/javascript" src='<?php echo $server; ?>/js/textAngular-rangy.min.js'></script>
-  <script type="text/javascript" src='<?php echo $server; ?>/js/textAngular-sanitize.min.js'></script>
-  <script type="text/javascript" src='<?php echo $server; ?>/js/textAngular.min.js'></script>
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/app.js"></script>
 
-
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/controllers/mainController.js"></script>
-  <!-- <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/controllers/headerController.js"></script> -->
-
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/authDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/leftMenuDirective.js"></script>
-  <!-- <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/adminDirective.js"></script> -->
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/pagesDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/bannersDirective.js"></script>
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/directives/sectionsDirective.js"></script>
 
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/admin/process/services/services.js"></script>

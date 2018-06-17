@@ -25,7 +25,9 @@ class HomeController extends Controller
         $now = new \DateTime();
         $data['date'] = $now;
         $active_page = Pages::where('link_url', $protocol.$hostName)->get();
-        $data['page'] = $active_page[0];
+        if( count( $active_page ) > 0 ){
+            $data['page'] = $active_page[0];
+        }
 
         return view('main.index', $data);
     }

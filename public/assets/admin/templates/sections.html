@@ -1,11 +1,11 @@
-<div class="row" banners-directive>  
+<div class="row" sections-directive>  
   <div class="col-12">
-    <div id="banners-container" class="white-box">
-      <div ng-if="isListShow" class="row banners-list-container">
+    <div id="sections-container" class="white-box">
+      <div ng-if="isListShow" class="row sections-list-container">
         <div class="col-9">
-          <button class="btn" ng-click="selectAllBanners()">Select All</button>
+          <button class="btn" ng-click="selectAllSections()">Select All</button>
           <button class="btn" ng-click="toggleAdd()">Add</button>
-          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMultipleBanners()">Delete(<span ng-bind="checkedBannerArr.length"></span>)</button>
+          <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMultipleSections()">Delete(<span ng-bind="checkedSectionArr.length"></span>)</button>
         </div>
         <div class="col-3">
           <div class="search-container text-right" style="height: 30px;">
@@ -13,7 +13,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" style="border: none;background: transparent;"><i class="fa fa-search"></i></span>
               </div>
-              <input ng-model="banners_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
+              <input ng-model="sections_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
             </div>
           </div>
           <div class="white-space-20"></div>
@@ -32,9 +32,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="list in banners_list | filter:banners_search">
+              <tr ng-repeat="list in sections_list | filter:sections_search">
                 <td class="text-center">
-                  <input type="checkbox" class="form-check-input no-margin" ng-model="bannerCheckbox[$index]" ng-click="bannerChecked($index, bannerCheckbox[$index])">
+                  <input type="checkbox" class="form-check-input no-margin" ng-model="vannerCheckbox[$index]" ng-click="vannerChecked($index, vannerCheckbox[$index])">
                 </td>
                 <td ng-bind="list.name">Pagename</td>
                 <td>
@@ -53,27 +53,26 @@
         </div>
       </div>
 
-      <div ng-if="isAddShow || isEditShow" class="row add-banner-container">
+      <div ng-if="isAddShow || isEditShow" class="row add-section-container">
         
         <div class="col-9" style="border-right: 1px solid #ddd;">
-          <p ng-if="isAddShow" class="text-weight-700 font-20">Add Banner</p>
-          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Banner <button ng-if="isEditShow" class="btn btn-delete" ng-click="deleteBanner( selected_data.id )">Delete</button></p>
-          <form name="bannerForm">
+          <p ng-if="isAddShow" class="text-weight-700 font-20">Add Section</p>
+          <p ng-if="isEditShow" class="text-weight-700 font-20">Edit Section <button ng-if="isEditShow" class="btn btn-delete" ng-click="deleteSection( selected_data.id )">Delete</button></p>
+          <form name="sectionForm">
             <div class="form-group">
-              <label>Banner name</label>
+              <label>Section name</label>
               <input class="form-control" ng-model="selected_data.name"></input>
             </div>
+
             <div class="form-group">
-              <label>Header text</label>
-              <input class="form-control" ng-model="selected_data.header_text"></input>
+              <label>Column 1</label>
+              <div class="column-content">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Sub text</label>
-              <input class="form-control" ng-model="selected_data.sub_text"></input>
-            </div>
+
             <div class="form-group">
               <label>Background Image</label>
-              <p ng-show="bannerForm.file.$error.maxSize" class="text-error text-weight-700 no-margin">File too large. Max size is 5MB.</p>
+              <p ng-show="sectionForm.file.$error.maxSize" class="text-error text-weight-700 no-margin">File too large. Max size is 5MB.</p>
               <br>
               <button class="btn" name="file" ngf-select ng-model="selected_data.img" ngf-pattern="'image/*'"
                 ngf-accept="'image/*'" ngf-max-size="5MB">Select</button>
@@ -82,11 +81,11 @@
             <div class="form-group">
               <label>Preview</label>
               <br>
-              <div class="preview-banner-container display-table">
-                <div class="preview-banner-bg-image">
+              <div class="preview-section-container display-table">
+                <div class="preview-section-bg-image">
                   <img ngf-thumbnail="selected_data.img" class="img-fluid">
                 </div>
-                <div class="preview-banner-content display-table-cell vertical-align-middle">
+                <div class="preview-section-content display-table-cell vertical-align-middle">
                   <p class="font-38 color-white" ng-bind="selected_data.header_text">Lorem ipsum dolor sit amet</p>
                   <p class="font-18 color-white" ng-bind="selected_data.sub_text">Lorem ipsum dolor sit amet</p>
                 </div>
@@ -110,6 +109,17 @@
           </div>
 
           <div class="form-group">
+            <label>Columns</label>
+            <select class="form-control" ng-model="selected_data.columns">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label>Visibility</label>
             <select class="form-control" ng-model="selected_data.visibility">
               <option>hidden</option>
@@ -121,8 +131,8 @@
             <div class="white-space-30"></div>
             <button class="btn" ng-click="toggleList()">Cancel</button>
 
-            <button ng-if="isAddShow" class="btn" ng-click="submitBanner( selected_data )">Submit</button>
-            <button ng-if="isEditShow" class="btn" ng-click="editBanner( selected_data )">Update</button>
+            <button ng-if="isAddShow" class="btn" ng-click="submitSection( selected_data )">Submit</button>
+            <button ng-if="isEditShow" class="btn" ng-click="editSection( selected_data )">Update</button>
 
             <div class="white-space-80"></div>
           </div>

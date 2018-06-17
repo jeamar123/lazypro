@@ -33,8 +33,6 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
   //  BANNERS
 
   appFactory.addBanner = function( data ) {
-    // return $http.post(serverUrl.url + 'add_banner', data);
-
     return Upload.upload( {
       url: serverUrl.url + 'add_banner',
       data: data
@@ -42,7 +40,10 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
   };
 
   appFactory.updateBanner = function( data ) {
-    return $http.post(serverUrl.url + 'update_banner', data);
+    return Upload.upload( {
+      url: serverUrl.url + 'update_banner',
+      data: data
+    });
   };
 
   appFactory.removeBanner = function( id ) {
@@ -51,6 +52,38 @@ appService.factory('appModule', function( serverUrl, $http, Upload ){
 
   appFactory.fetchBanners = function( ) {
     return $http.get(serverUrl.url + 'get_banners');
+  };
+
+  appFactory.fetchBannerByID = function( id ) {
+    return $http.get(serverUrl.url + 'get_banners/' + id);
+  };
+
+  // SECTIONS
+
+  appFactory.addSection = function( data ) {
+    return Upload.upload( {
+      url: serverUrl.url + 'add_section',
+      data: data
+    });
+  };
+
+  appFactory.updateSection = function( data ) {
+    return Upload.upload( {
+      url: serverUrl.url + 'update_section',
+      data: data
+    });
+  };
+
+  appFactory.removeSection = function( id ) {
+    return $http.get(serverUrl.url + 'delete_section/' + id);
+  };
+
+  appFactory.fetchSections = function( ) {
+    return $http.get(serverUrl.url + 'get_sections');
+  };
+
+  appFactory.fetchSectionByID = function( id ) {
+    return $http.get(serverUrl.url + 'get_sections/' + id);
   };
 
   return appFactory;
